@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= profile.name %> - Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Profile Details</h1>
+      <div>
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+        <a href="/edit/<%= profile._id %>" class="btn btn-edit">Edit Profile</a>
+      </div>
+    </header>
+
+    <div class="profile-detail">
+      <div class="detail-section">
+        <h2><%= profile.name %></h2>
+        <p class="email"><strong>Email:</strong> <%= profile.email %></p>
+        <% if (profile.phone) { %>
+          <p><strong>Phone:</strong> <%= profile.phone %></p>
+        <% } %>
+      </div>
+
+      <% if (profile.bio) { %>
+        <div class="detail-section">
+          <h3>Bio</h3>
+          <p><%= profile.bio %></p>
+        </div>
+      <% } %>
+
+      <% if (profile.skills) { %>
+        <div class="detail-section">
+          <h3>Skills</h3>
+          <p><%= profile.skills %></p>
+        </div>
+      <% } %>
+
+      <% if (profile.experience) { %>
+        <div class="detail-section">
+          <h3>Work Experience</h3>
+          <p><%= profile.experience %></p>
+        </div>
+      <% } %>
+
+      <% if (profile.education) { %>
+        <div class="detail-section">
+          <h3>Education</h3>
+          <p><%= profile.education %></p>
+        </div>
+      <% } %>
+
+      <form action="/profile/delete/<%= profile._id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this profile?');">
+        <button type="submit" class="btn btn-delete">Delete Profile</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

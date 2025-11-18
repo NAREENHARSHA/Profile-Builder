@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Builder</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Profile Builder</h1>
+      <a href="/create" class="btn btn-primary">Create New Profile</a>
+    </header>
+
+    <div class="profiles-grid">
+      <% if (profiles.length === 0) { %>
+        <p class="no-profiles">No profiles yet. Create your first profile!</p>
+      <% } else { %>
+        <% profiles.forEach(profile => { %>
+          <div class="profile-card">
+            <h3><%= profile.name %></h3>
+            <p class="email"><%= profile.email %></p>
+            <p class="bio"><%= profile.bio ? profile.bio.substring(0, 100) + '...' : 'No bio available' %></p>
+            <div class="card-actions">
+              <a href="/profile/<%= profile._id %>" class="btn btn-secondary">View Profile</a>
+              <a href="/edit/<%= profile._id %>" class="btn btn-edit">Edit</a>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
